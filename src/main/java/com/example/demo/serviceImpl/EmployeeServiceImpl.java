@@ -1,5 +1,6 @@
 package com.example.demo.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Optional;
@@ -30,8 +31,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Employee> getAllEmployee() {
-		return employeeRepository.findAll();
+	public List<EmployeeDto> getAllEmployee() {
+		List<EmployeeDto> employeeDto = new ArrayList<>();
+		for(Employee emp:employeeRepository.findAll())
+			employeeDto.add(EmployeeMapper.toEmployeeDto(emp));
+		return employeeDto;
 	}
 
 	@Override

@@ -43,7 +43,7 @@ public class EmployeeController {
 
 	// Rest Api to Get an Employee by id, getting the employee id in URL from client
 	@GetMapping()
-	public List<Employee> getAllEmployee() {
+	public List<EmployeeDto> getAllEmployee() {
 		return employeeService.getAllEmployee();
 	}
 
