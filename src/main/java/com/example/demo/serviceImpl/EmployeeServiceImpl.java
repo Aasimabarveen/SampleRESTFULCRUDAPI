@@ -1,6 +1,7 @@
 package com.example.demo.serviceImpl;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import java.util.Optional;
@@ -26,6 +27,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public EmployeeDto saveEmployee(EmployeeDto employeeDto) {
+		if (employeeDto == null)
+			return null;
 		Employee employee = EmployeeMapper.toEmployee(employeeDto);
 		return EmployeeMapper.toEmployeeDto(employeeRepository.save(employee));
 	}
@@ -33,7 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<EmployeeDto> getAllEmployee() {
 		List<EmployeeDto> employeeDto = new ArrayList<>();
-		for(Employee emp:employeeRepository.findAll())
+		for (Employee emp : employeeRepository.findAll())
 			employeeDto.add(EmployeeMapper.toEmployeeDto(emp));
 		return employeeDto;
 	}
@@ -51,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public EmployeeDto updateEmployee(EmployeeDto employeeDto, long id) {
 		Optional<Employee> oldEmployee = employeeRepository.findById(id);
-		if (oldEmployee == null)
+		if (oldEmployee.isPresent() == false)
 			throw new ResourceNotFoundException("Employee Not Found with Id " + id);
 
 		oldEmployee.get().setFirstName(employeeDto.getFirstName());
@@ -64,11 +67,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void deleteEmployee(long id) {
 		EmployeeDto employeeDto = getById(id);
-		if (employeeDto != null) {
-			employeeRepository.deleteById(id);
-		} else
-			throw new ResourceNotFoundException("Employee Not Found with Id " + id);
-
+		employeeRepository.deleteById(id);
 	}
 
 }
