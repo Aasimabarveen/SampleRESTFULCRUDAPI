@@ -19,8 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.EmployeeDto;
 import com.example.demo.service.EmployeeService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
+@Tag(name = "Employee", description = "Employee Crud API")
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
@@ -37,6 +42,9 @@ public class EmployeeController {
 	// from client,Here im using reponseEntity<T> as Return type which helps to pack
 	// employee obj and httpstatu code along with http header. instead of jst the
 	// employee obj
+	@Operation(summary = "save Employee", description = "Save Employee data to datasource")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Created Successfully"),
+			@ApiResponse(responseCode = "400", description = "Bad Request") })
 	@PostMapping()
 	public ResponseEntity<EmployeeDto> saveEmployee(@Valid @RequestBody EmployeeDto emp) {
 		logger.info("Request received to save employee: {}", emp);
@@ -46,6 +54,9 @@ public class EmployeeController {
 	}
 
 	// Rest Api to Get an Employee by id, getting the employee id in URL from client
+	@Operation(summary = "Fetch All Employees", description = "Fetch all the employees from datasource ")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Fetched Successfully"),
+			@ApiResponse(responseCode = "400", description = "Bad Request") })
 	@GetMapping()
 	public List<EmployeeDto> getAllEmployee() {
 		logger.info("Request Received to Get All Employees: ");
@@ -55,7 +66,7 @@ public class EmployeeController {
 	// Rest Api to Get all Employee
 	@GetMapping("/{id}")
 	public ResponseEntity<EmployeeDto> getEmployeeId(@PathVariable(name = "id") long id) {
-		logger.info("Request Received to get Employee By Id ",id);
+		logger.info("Request Received to get Employee By Id ", id);
 		return new ResponseEntity<EmployeeDto>(employeeService.getById(id), HttpStatus.OK);
 	}
 
@@ -64,7 +75,7 @@ public class EmployeeController {
 	@PutMapping("{id}")
 	public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") long id,
 			@Valid @RequestBody EmployeeDto employeedto) {
-		logger.info("Request Received to update Employee ",employeedto);
+		logger.info("Request Received to update Employee ", employeedto);
 		return new ResponseEntity<EmployeeDto>(employeeService.updateEmployee(employeedto, id), HttpStatus.OK);
 
 	}
@@ -72,7 +83,7 @@ public class EmployeeController {
 	// Rest Api to DElete a Employee by id.
 	@DeleteMapping("{id}")
 	public ResponseEntity<String> deleteEmployee(@PathVariable("id") long id) {
-		logger.info("Request Received to Delete Employee ",id);
+		logger.info("Request Received to Delete Employee ", id);
 		employeeService.deleteEmployee(id);
 		logger.info("Employee deleted with ID: {}", id);
 		return new ResponseEntity<String>("Employee Deleted Sucessfully..", HttpStatus.OK);

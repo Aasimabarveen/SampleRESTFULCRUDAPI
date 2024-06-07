@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class EmployeeAppApplication {
-
+//http://localhost:8080/swagger-ui/index.html - url for Swagger Ui
+//http://localhost:8080/v3/api-docs - docs in json format	
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeAppApplication.class, args);
 
