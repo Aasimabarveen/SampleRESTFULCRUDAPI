@@ -89,4 +89,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 		logger.info("Employee deleted with ID: {}", id);
 	}
 
+	@Override
+	public Employee getByFirstName(String name) {
+		logger.info("Fetching employee by Name: {}", name);
+		Optional<Employee> user = employeeRepository.findByfirstName(name);
+		if (user.isPresent()) {
+			logger.debug("Employee found with Name: {}", name);
+			return user.get();
+		} else
+		{
+			logger.error("Employee not found with Name: {}", name);
+			throw new ResourceNotFoundException("Employee Not Found with name " + name);
+		}
+			
+	}
+
 }
