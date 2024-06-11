@@ -23,8 +23,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.example.demo.dto.EmployeeDto;
+import com.example.demo.entities.Employee;
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.Employee;
 import com.example.demo.serviceImpl.EmployeeServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

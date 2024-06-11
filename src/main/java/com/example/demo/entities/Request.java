@@ -1,6 +1,7 @@
-package com.example.demo.model;
+package com.example.demo.entities;
 
 import jakarta.validation.constraints.NotEmpty;
+
 
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Login {
+public class Request {
 	@NotEmpty(message = "Please Provide User Name")
 	@Size(min = 3, message = "Please Provide Valid User Name")
 	String userName;

@@ -16,7 +16,8 @@ import com.example.demo.exception.ResourceNotFoundException;
 
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.dto.EmployeeDto;
-import com.example.demo.model.Employee;
+import com.example.demo.entities.Employee;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

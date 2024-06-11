@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import com.example.demo.dto.EmployeeDto;
-import com.example.demo.model.Employee;
+import com.example.demo.entities.Employee;
 
 class EmployeeMapperTest {
 

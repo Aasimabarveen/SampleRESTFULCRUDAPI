@@ -1,7 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.EmployeeDto;
-import com.example.demo.model.Employee;
+import com.example.demo.entities.Employee;
 
 public class EmployeeMapper {
 

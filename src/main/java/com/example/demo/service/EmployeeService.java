@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.dto.EmployeeDto;
-import com.example.demo.model.Employee;
+import com.example.demo.entities.Employee;
 
 public interface EmployeeService {
 

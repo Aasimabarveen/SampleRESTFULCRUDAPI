@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entities.Employee;
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.Employee;
 import com.example.demo.repository.EmployeeRepository;
 
 @Service
